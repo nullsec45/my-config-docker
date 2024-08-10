@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:latest
+    env_file:
+      - .env
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - mongo_network
+  mongodb-express:
+    image: mongo-express:latest
+    container_name: mongodb-express
+    restart: on-failure
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+    networks:
+      - mongo_network
+    depends_on:
+      - mongodb
+networks:
+  mongo_network:
+    name: mongo_network
+    driver: bridge
