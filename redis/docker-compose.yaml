@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    env_file:
+      - .env
+    restart: on-failure
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/:/data
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./entrypoint.sh:/usr/local/bin/entrypoint.sh
+    entrypoint: ["/usr/local/bin/entrypoint.sh"]
+    networks:
+      - network_php
+networks:
+  network_php:
+    name: network_php
+    driver: bridge
