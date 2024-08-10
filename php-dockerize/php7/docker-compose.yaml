@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  php7:
+    container_name: php7
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
+    volumes:
+      - /home/nullsec45/project/php/php7/:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./config/apache2.conf:/etc/apache2/sites-enabled/000-default.conf
+    networks:
+      - network_php
+
+networks:
+  network_php:
+    name: network_php
+    driver: bridge
