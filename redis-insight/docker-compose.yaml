@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  redis_insight:
+    container_name: redis_insight
+    image: redis/redisinsight:latest
+    user: "1000:1000"
+    ports:
+      - "5540:5540"
+    volumes:
+      - ./data:/data
+    networks:
+      - network_php
+networks:
+  network_php:
+    name: network_php
+    driver: bridge
