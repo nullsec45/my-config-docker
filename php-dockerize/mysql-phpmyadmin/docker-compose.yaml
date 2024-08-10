@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  mysql_2:
+    container_name: "mysql_2"
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./config/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+      - ./data/:/var/lib/mysql
+      - ./backup_data/:/home/database
+    networks:
+      - network_php
+    env_file:
+      - .env_mysql
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8084:80"
+    env_file:
+      - .env_pma
+    networks:
+      - network_php
+networks:
+  network_php:
+    name: network_php
+    driver: bridge
