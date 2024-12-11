@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     && docker-php-ext-install zip \
+    && docker-php-ext-install intl \
+    && docker-php-ext-enable intl \
     && docker-php-ext-install mysqli pdo_mysql \
     && docker-php-ext-enable zip \
     && docker-php-ext-enable mysqli pdo_mysql\
@@ -18,8 +20,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install gd \
     && docker-php-ext-enable gd  
-
-
 
 # Enable Apache modules
 RUN a2enmod rewrite
@@ -33,3 +33,7 @@ RUN chown -R www-data:www-data /var/www/html
 RUN chmod 775 -R /var/www/html
 
 COPY ./config/apache2.conf /etc/apache2/sites-available/000-default.conf
+
+# RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - &&\
+#     apt-get update --fix-missing \
+#     && apt-get install -y nodejs
