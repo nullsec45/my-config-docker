@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     libpng-dev \
-    libonig-dev\
+    libonig-dev \
     libxml2-dev \
     libpng-dev \
     libjpeg-dev \
@@ -14,12 +14,16 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable intl \
     && docker-php-ext-install mysqli pdo_mysql \
     && docker-php-ext-enable zip \
-    && docker-php-ext-enable mysqli pdo_mysql\
+    && docker-php-ext-enable mysqli pdo_mysql \
     && docker-php-ext-install zip  \
     && docker-php-ext-configure gd --with-jpeg \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install gd \
-    && docker-php-ext-enable gd  
+    && docker-php-ext-enable gd  \
+    && docker-php-ext-install sockets \
+    && docker-php-ext-enable sockets \
+    && docker-php-ext-install pcntl \
+    && docker-php-ext-enable pcntl
 
 # Enable Apache modules
 RUN a2enmod rewrite
