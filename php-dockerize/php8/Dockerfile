@@ -10,11 +10,12 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     unzip \
     libpq-dev \
+    libwebp-dev \
     && docker-php-ext-install zip \
     && docker-php-ext-install intl \
     && docker-php-ext-install mysqli pdo_mysql \
     && docker-php-ext-install pdo_pgsql \
-    && docker-php-ext-configure gd --with-jpeg \
+    && docker-php-ext-configure gd --with-jpeg --with-webp\
     && docker-php-ext-install gd \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install sockets \
