@@ -7,6 +7,9 @@ services:
     ports:
       - "8083:80"
       - "8090:8000"
+      - "8091:8001"
+      - "8092:8002"
+      - "9000:9000"
     volumes:
       - /home/nullsec45/project/php/php8/:/var/www/html
       - ./config/php.ini:/usr/local/etc/php/conf.d/php.ini
