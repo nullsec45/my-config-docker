@@ -23,7 +23,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install bcmath \
     && docker-php-ext-install exif \
     && docker-php-ext-install calendar \
-    && docker-php-ext-enable intl zip mysqli pdo_mysql pdo_pgsql gd sockets pcntl bcmath exif calendar
+    && docker-php-ext-enable intl zip mysqli pdo_mysql pdo_pgsql gd sockets pcntl bcmath exif calendar \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
 
 # Aktifkan mod_rewrite di Apache
 RUN a2enmod rewrite
